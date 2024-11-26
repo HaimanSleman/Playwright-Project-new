@@ -12,16 +12,16 @@ test.describe('Negative Login Scenarios', () => {
     for (const scenario of scenarios) {
         test(`Negative Login - ${scenario.username || 'empty username'} + ${
             scenario.password || 'empty password'
-        }`, async ({page}) => {
+        }`, async ({ page }) => {
             if (scenario.username !== '') {
-                await page.fill('#user-name', scenario.username)
+                await page.fill('#user-name', scenario.username);
             }
             if (scenario.password !== '') {
-                await page.fill('#password', scenario.password)
+                await page.fill('#password', scenario.password);
             }
-            await page.click('#login-button')
-            const errorMessage = page.locator(errorMessageSelector) // You don't need to store async operation in a variable.
-            await expect(errorMessage).toHaveText(scenario.expectedError)
-        })
-    }
-})
+            await page.click('#login-button');
+            
+            const errorMessageText = await page.innerText(errorMessageSelector);
+            expect(errorMessageText).toBe(scenario.expectedError);
+        });
+    }}); 
