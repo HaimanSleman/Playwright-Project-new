@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 
-test("adding-two-products", async ({ page }) => {
+// I asked to wrap the test cases in a test suite - test.describe
+test("adding-two-products", async ({ page }) => { // this is not a good test case name. refine it please.
   await page.goto("https://www.saucedemo.com");
 
   await page.locator('[data-test="username"]').click();
@@ -22,7 +23,7 @@ test("adding-two-products", async ({ page }) => {
   
   await expect(page).toHaveURL("https://www.saucedemo.com/cart.html");
   await expect(page.locator(`[data-test="title"]`)).toContainText(`Your Cart`);
-
+  // where is the validation for numbers of items in the cart page overview? check project presentation page 13
   await page.locator('[data-test="checkout"]').click();
   await expect(page).toHaveURL(
     `https://www.saucedemo.com/checkout-step-one.html`

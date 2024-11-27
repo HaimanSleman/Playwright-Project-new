@@ -15,7 +15,7 @@ test.describe('Positive Login', () => {
                 'https://www.saucedemo.com/inventory.html',
             )
 
-            const pageTitle = await page.locator('.title')
+            const pageTitle = await page.locator('.title') // remove the await from here. you don't need to store a async operation in a variable. async operations used in actions and assertion in test automation.
             await expect(pageTitle).toHaveText('Products')
         })
     }
